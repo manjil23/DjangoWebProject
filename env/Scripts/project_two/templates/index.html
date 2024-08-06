@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'index.css' %}" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">Phone Shop</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="http://127.0.0.1:8000/index/"
+              >Our Products <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/about/">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/contactus/"
+              >Contact</a
+            >
+          </li>
+        </ul>
+        <!-- Search form -->
+        <form
+          class="form-inline ml-auto"
+          method="GET"
+          action="{% url 'search_results' %}"
+        >
+          {% csrf_token %}
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            id="searchInput"
+            placeholder="Search"
+            aria-label="Search"
+            name="q"
+          />
+          <button
+            class="btn btn-outline-light my-2 my-sm-0"
+            type="submit"
+            id="searchButton"
+          >
+            Search
+          </button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="container my-5 custom-container">
+      <h2 class="text-center mb-3">Product Details</h2>
+      <div class="row">
+        <div class="col-lg-2 mb-4">
+          <div class="filter-container p-3 border rounded">
+            <h5>Filter Products</h5>
+            <div class="form-group">
+              <input
+                type="checkbox"
+                id="productCheckbox"
+                name="productCheckbox"
+              />
+              <label for="productCheckbox">Select All Products</label>
+            </div>
+
+            <div class="form-group">
+              <input type="checkbox" id="descorderby" name="descorderby" />
+              <label for="descorderby">Sort Price Desc</label>
+            </div>
+
+            <div class="form-group">
+              <input type="checkbox" id="Acesorderby" name="Acesorderby" />
+              <label for="Acesorderby">Sort Price Asce</label>
+            </div>
+
+            <div class="form-group">
+              <input
+                type="checkbox"
+                id="productContainsCheckbox"
+                name="productContainsCheckbox"
+              />
+              <label for="productContainsCheckbox">Samsung Products</label>
+            </div>
+
+            <div class="form-group">
+              <input
+                type="checkbox"
+                id="productappleicontains"
+                name="productappleicontains"
+              />
+              <label for="productappleicontains">Apple Products</label>
+            </div>
+
+            <div class="form-group">
+              <input
+                type="checkbox"
+                id="productPriceGTCheckbox"
+                name="productPriceGTCheckbox"
+              />
+              <label for="productPriceGTCheckbox">Products > 50000</label>
+            </div>
+
+            <div class="form-group">
+              <input
+                type="checkbox"
+                id="productGTorEquals"
+                name="productGTorEquals"
+              />
+              <label for="productGTorEquals">Products >= 50000</label>
+            </div>
+
+            <div class="form-group">
+              <input
+                type="checkbox"
+                id="startswithproduct"
+                name="startswithproduct"
+              />
+              <label for="startswithproduct">StartsWith Apple</label>
+            </div>
+
+            <div class="form-group">
+              <input
+                type="checkbox"
+                id="endswithproduct"
+                name="endswithproduct"
+              />
+              <label for="endswithproduct">EndsWith Pro</label>
+            </div>
+
+            <div class="form-group">
+              <input type="checkbox" id="exludeOr" name="exludeOr" />
+              <label for="exludeOr">Exclude Pro or Mini</label>
+            </div>
+
+            <div class="form-group">
+              <input type="checkbox" id="maxprice" name="maxprice" />
+              <label for="maxprice">Max Price Product</label>
+            </div>
+
+            <div class="form-group">
+              <input type="checkbox" id="minprice" name="minprice" />
+              <label for="minprice">Min Price Product</label>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          document
+            .getElementById("productCheckbox")
+            .addEventListener("change", function () {
+              if (this.checked) {
+                window.location.href = "http://127.0.0.1:8000/productDetails/";
+              }
+            });
+
+          document
+            .getElementById("productContainsCheckbox")
+            .addEventListener("change", function () {
+              if (this.checked) {
+                window.location.href =
+                  "http://127.0.0.1:8000/conatinsProductName/";
+              }
+            });
+
+          document
+            .getElementById("productappleicontains")
+            .addEventListener("change", function () {
+              if (this.checked) {
+                window.location.href =
+                  "http://127.0.0.1:8000/iconatinsProductName/";
+              }
+            });
+
+          document
+            .getElementById("productGTorEquals")
+            .addEventListener("change", function () {
+              if (this.checked) {
+                window.location.href =
+                  "http://127.0.0.1:8000/greaterThanEqualProductName/";
+              }
+            });
+
+          document
+            .getElementById("startswithproduct")
+            .addEventListener("change", function () {
+              if (this.checked) {
+                window.location.href =
+                  "http://127.0.0.1:8000/productNameStartsWith/";
+              }
+            });
+
+          document
+            .getElementById("startswithproduct")
+            .addEventListener("change", function () {
+              if (this.checked) {
+                window.location.href =
+                  "http://127.0.0.1:8000/productNameStartsWith/";
+              }
+            });
+
+          document
+            .getElementById("endswithproduct")
+            .addEventListener("change", function () {
+              if (this.checked) {
+                window.location.href =
+                  "http://127.0.0.1:8000/productNameEndsWith/";
+              }
+            });
+
+          document
+            .getElementById("exludeOr")
+            .addEventListener("change", function () {
+              if (this.checked) {
+                window.location.href =
+                  "http://127.0.0.1:8000/productNamesExcludeOr/";
+              }
+            });
+
+          document
+            .getElementById("maxprice")
+            .addEventListener("change", function () {
+              if (this.checked) {
+                window.location.href = "http://127.0.0.1:8000/maxProductPrice/";
+              }
+            });
+
+          document
+            .getElementById("minprice")
+            .addEventListener("change", function () {
+              if (this.checked) {
+                window.location.href = "http://127.0.0.1:8000/minProductPrice/";
+              }
+            });
+
+          document
+            .getElementById("descorderby")
+            .addEventListener("change", function () {
+              if (this.checked) {
+                window.location.href = "http://127.0.0.1:8000/orderByCostDesc/";
+              }
+            });
+
+          document
+            .getElementById("Acesorderby")
+            .addEventListener("change", function () {
+              if (this.checked) {
+                window.location.href =
+                  "http://127.0.0.1:8000/orderByCostAscen/";
+              }
+            });
+        </script>
+
+        <div class="col-lg-9">
+          <div class="row">
+            {% for profile in product %}
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div class="card shadow-lg border-light h-100">
+                <img
+                  src="{{ profile.product_image.url }}"
+                  class="card-img-top img-fluid product-img"
+                  alt="Product Image"
+                />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">{{ profile.product_name }}</h5>
+                  <p class="card-text">
+                    <strong>User Name:</strong> {{ profile.user_name }}
+                  </p>
+                  <p class="card-text">
+                    <strong>User Contact:</strong> {{ profile.user_contact }}
+                  </p>
+                  <p class="card-text">
+                    <strong>User Email:</strong> {{ profile.user_email }}
+                  </p>
+                  <p class="card-text">
+                    <strong>Product Cost:</strong> {{ profile.product_cost }}
+                  </p>
+                  <a href="#" class="btn btn-primary mt-auto">View Details</a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+Ensure all images are the same size .card-img-top {
+  object-fit: cover; /* Ensures images cover the space without distortion */
+  height: 200px; /* Fixed height for uniformity */
+  width: 100%; /* Ensures images fill the width of the card */
+}
+
+/* Additional styling for card shadows and borders */
+.card {
+  border: none; /* Removes default border */
+}
+
+.card-shadow-lg {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a larger shadow for depth */
+}
+
+.navbar {
+  margin-bottom: 30px; /* Adds space below the navbar */
+}
+
+.btn-primary {
+  background-color: #007bff; /* Customize button color */
+  border-color: #007bff; /* Customize button border color */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  border-color: #004085; /* Darker border on hover */
+}
+
+.card-text {
+  text-align: left;
+  font-size: 13.5px;
+  line-height: 15px;
+}
